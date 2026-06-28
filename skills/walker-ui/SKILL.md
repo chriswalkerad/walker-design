@@ -26,7 +26,10 @@ styled-components just as well.
 2. Wire the tokens to utilities — see **walker-tailwind** for Tailwind v4, or
    reference the CSS variables directly in any other styling approach.
 3. Build components against the **rules below**, never against your defaults.
-   Read `examples/button.tsx` and `examples/badge.tsx` for the component grammar.
+   Read `examples/button.tsx`, `examples/badge.tsx`, and `examples/signal-bar.tsx`
+   for the component grammar (note how the bar's neutral track carries no color
+   and only the fill takes a severity tone — and is `aria-hidden` because the
+   score is already stated as text).
 4. For the deeper "why" behind the contrast tiers and the graphical-vs-text
    severity split, read `reference/rationale.md`.
 
@@ -72,6 +75,11 @@ are not defaults — Claude will not produce them unless told.
 - **Compact, calm controls.** Buttons are small and quiet (~12.5px label, tight
   5/11px padding, 7px `--radius-control`). Radii: `--radius-control` 7px,
   `--radius-card` 8px, `--radius-pill` for chips.
+
+### Motion
+- **Quiet and intentional**, matching the UI. Short travel, short durations,
+  ease-out; the yellow accent is never animated in. For the full motion language
+  (easings, durations, entrance variants, reduced-motion), use **walker-motion**.
 
 ### Discipline
 - **Never raw hex in components.** Only token-backed utilities / CSS variables.

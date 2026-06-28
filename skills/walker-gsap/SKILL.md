@@ -5,11 +5,16 @@ description: Use when adding GSAP animation to a project in Chris Walker's style
 
 # walker-gsap
 
-> **Stub.** This skill is a placeholder to be filled in as the motion language
-> gets settled. Add specifics over time — don't ship vague guidance.
+> **Stub — not yet sourced.** The `big` project uses the `motion` package, not
+> GSAP, so there are no real GSAP patterns to codify here yet. The canonical
+> motion language lives in **walker-motion**; fill this in by lifting settled
+> GSAP/ScrollTrigger patterns from the heychris.design portfolio once they prove
+> out. Don't invent values — add specifics over time.
 
 Motion in the walker aesthetic should feel like the UI: **quiet and
-intentional.** Animation earns its place; it never decorates.
+intentional.** Animation earns its place; it never decorates. Match the easing
+and duration language in **walker-motion** (ease-out default, the
+`cubic-bezier(0.32,0.72,0,1)` signature curve for size/position moves).
 
 ## To fill in (delete each line as it's answered)
 

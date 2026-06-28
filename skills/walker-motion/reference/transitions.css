@@ -1,0 +1,87 @@
+/**
+ * walker-motion — the house motion language as CSS custom properties.
+ *
+ * These values are codified from the real transitions used across the `big`
+ * project. They were inline there; tokenizing them here makes the language
+ * explicit and reusable. Add this block alongside walker-ui's tokens.css.
+ *
+ * Principle: motion is QUIET. Short travel, short durations, ease-OUT. It guides
+ * the eye to content; it never performs.
+ */
+
+:root {
+  /* Durations — each has a job. Don't invent in-between values. */
+  --duration-micro: 120ms; /* squiggle underline color/thickness, tiny hovers */
+  --duration-fast: 150ms; /* hover tints, focus pulse, opacity nudge */
+  --duration-base: 200ms; /* opacity fades, theme color swap, rail width */
+  --duration-enter: 220ms; /* content entrance (fade + small rise) */
+  --duration-panel: 270ms; /* drawer / panel size + position moves */
+  --duration-fill: 300ms; /* meter / progress bar width */
+
+  /* Easings.
+     `--ease-out` is the DEFAULT for almost everything (entrances, fades, bars,
+     hovers). `--ease-drawer` is the SIGNATURE curve — a smooth iOS-style
+     decelerate used only for size/position moves (panels opening, columns
+     reflowing). `--ease-theme` is the plain ease reserved for the color-only
+     theme swap. */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1); /* ease-out */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); /* signature panel curve */
+  --ease-theme: ease;
+
+  /* Entrance travel — kept tiny on purpose. */
+  --enter-rise: 6px; /* content rows rise this far on enter */
+  --panel-travel: 12px; /* panels slide this far (16px on desktop X-axis) */
+}
+
+/* Theme swap: animate COLOR PROPERTIES ONLY, so layout never reflows. `*` has
+   zero specificity, so components with their own faster `transition-colors`
+   (buttons, rows, hovers) keep their snappier timing. */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke,
+    outline-color;
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--ease-theme);
+}
+
+/* Showpiece skeleton: a soft highlight sweeping a panel-toned block, mixed from
+   neutral tokens so it adapts to light/dark. */
+@keyframes skeleton-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  background-color: var(--panel);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--surface) 75%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+/* One global guard honors prefers-reduced-motion for the whole app, so
+   individual components don't each have to. Neutralize long transitions,
+   looping animations, and smooth scroll. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

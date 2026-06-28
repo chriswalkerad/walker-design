@@ -15,8 +15,8 @@ gets the aesthetic).
 | --- | --- |
 | **walker-ui** | The aesthetic — quiet, minimal, all-white + Notion-dark, warm near-black ink, hairline borders, one sparing yellow accent, 4px grid, airy display type. Ships the exact tokens + the rules that make it *this* look. Framework-agnostic. |
 | **walker-tailwind** | The wiring — Tailwind v4 `@theme inline` block that turns the tokens into utilities, the `.dark` variant setup, and the `tailwind-merge` config for the custom type scale. |
-| **walker-gsap** | GSAP motion in the house style. *Stub — fill over time.* |
-| **walker-motion** | Motion (`motion` / Framer Motion) in the house style. *Stub — fill over time.* |
+| **walker-motion** | Motion (`motion` / Framer Motion) in the house style — the house easing curves, duration scale, entrance variants, signature drawer curve, theme-swap + reduced-motion patterns (codified from `big`). |
+| **walker-gsap** | GSAP motion in the house style. *Stub — `big` uses `motion`, not GSAP; to be sourced from the portfolio.* |
 
 Source of the aesthetic: the `big` project (Creative Review Workspace).
 `walker-ui/reference/tokens.css` is vendored from there as a frozen snapshot —
