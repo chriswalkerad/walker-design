@@ -1,0 +1,9 @@
+{
+  "name": "walker-design",
+  "version": "0.1.0",
+  "description": "Chris Walker's design skills: the walker-ui aesthetic (quiet, minimal, token-driven, light + dark) and the mechanisms that deliver it — walker-tailwind, walker-gsap, walker-motion.",
+  "author": {
+    "name": "Chris Walker",
+    "url": "https://github.com/chriswalkerad"
+  }
+}

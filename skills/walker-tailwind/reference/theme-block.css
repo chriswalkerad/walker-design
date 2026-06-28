@@ -1,0 +1,115 @@
+/**
+ * walker-tailwind — the Tailwind v4 wiring for walker-ui tokens.
+ *
+ * Put this in your global stylesheet (e.g. src/app/globals.css), AFTER
+ * importing Tailwind and the tokens file. It maps the CSS-variable tokens onto
+ * Tailwind's theme so token-backed utilities exist:
+ *   bg-bg, bg-surface, bg-panel, bg-app-canvas, border-border,
+ *   text-primary/secondary/tertiary, text-accent/bg-accent,
+ *   text-risk/minor/pass (+ -text, bg-, border- variants),
+ *   text-label-xs … text-display, p-1…p-12, rounded-control/card/pill.
+ *
+ * `@theme inline` emits utilities that reference var() directly, so the
+ * light/dark values from tokens.css resolve at runtime when `.dark` toggles.
+ */
+@import "tailwindcss";
+@import "../styles/tokens.css"; /* walker-ui reference/tokens.css */
+
+/* Dark mode via next-themes' `class` strategy (a `.dark` class on <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  /* Colors — neutrals */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-panel: var(--panel);
+  --color-app-canvas: var(--app-canvas);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-focus: var(--focus);
+
+  /* Inverse ink — the charcoal/near-white primary button surface + its label. */
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-hover: var(--ink-hover);
+
+  /* Colors — functional / chromatic.
+     `*` are graphical values (bars/squiggles, ≥3:1); `*-text` are the AA
+     text-contrast variants (≥4.5:1) for `text-risk-text` etc. */
+  --color-risk: var(--risk);
+  --color-minor: var(--minor);
+  --color-pass: var(--pass);
+  --color-risk-text: var(--risk-text);
+  --color-minor-text: var(--minor-text);
+  --color-pass-text: var(--pass-text);
+
+  /* Font family — system-first (SF / Segoe UI), Inter fallback via next/font. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+    system-ui, Roboto, var(--font-inter), Helvetica, Arial, sans-serif;
+
+  /* Type scale — UI. Tailwind pairs text-<name> with its line-height/weight. */
+  --text-label-xs: var(--font-size-label-xs);
+  --text-label-xs--line-height: var(--line-height-label-xs);
+  --text-label-xs--font-weight: var(--font-weight-label-xs);
+  --text-label-xs--letter-spacing: var(--letter-spacing-label-xs);
+
+  --text-label-sm: var(--font-size-label-sm);
+  --text-label-sm--line-height: var(--line-height-label-sm);
+  --text-label-sm--font-weight: var(--font-weight-label-sm);
+
+  --text-body: var(--font-size-body);
+  --text-body--line-height: var(--line-height-body);
+  --text-body--font-weight: var(--font-weight-body);
+
+  --text-body-emphasis: var(--font-size-body-emphasis);
+  --text-body-emphasis--line-height: var(--line-height-body-emphasis);
+  --text-body-emphasis--font-weight: var(--font-weight-body-emphasis);
+
+  --text-title: var(--font-size-title);
+  --text-title--line-height: var(--line-height-title);
+  --text-title--font-weight: var(--font-weight-title);
+
+  --text-heading: var(--font-size-heading);
+  --text-heading--line-height: var(--line-height-heading);
+  --text-heading--font-weight: var(--font-weight-heading);
+  --text-heading--letter-spacing: var(--letter-spacing-heading);
+
+  --text-display: var(--font-size-display);
+  --text-display--line-height: var(--line-height-display);
+  --text-display--font-weight: var(--font-weight-display);
+  --text-display--letter-spacing: var(--letter-spacing-display);
+
+  /* Type scale — document content */
+  --text-doc-body: var(--font-size-doc-body);
+  --text-doc-body--line-height: var(--line-height-doc-body);
+  --text-doc-body--font-weight: var(--font-weight-doc-body);
+
+  --text-doc-title: var(--font-size-doc-title);
+  --text-doc-title--line-height: var(--line-height-doc-title);
+  --text-doc-title--font-weight: var(--font-weight-doc-title);
+  --text-doc-title--letter-spacing: var(--letter-spacing-doc-title);
+
+  /* Spacing — 4px grid (p-1, gap-2, …) */
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-12: var(--space-12);
+
+  /* Radius — rounded-control / rounded-card / rounded-pill */
+  --radius-control: var(--radius-control);
+  --radius-card: var(--radius-card);
+  --radius-pill: var(--radius-pill);
+}
+
+body {
+  background: var(--app-canvas);
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums; /* numeric UI must not wobble */
+}

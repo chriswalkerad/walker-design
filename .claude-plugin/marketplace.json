@@ -1,0 +1,16 @@
+{
+  "name": "walker-design",
+  "owner": {
+    "name": "Chris Walker",
+    "url": "https://github.com/chriswalkerad"
+  },
+  "description": "Chris Walker's design skills — a quiet, intentional UI aesthetic plus the mechanisms (Tailwind, motion) that deliver it.",
+  "version": "0.1.0",
+  "plugins": [
+    {
+      "name": "walker-design",
+      "source": "./",
+      "description": "A family of composable design skills: the walker-ui aesthetic + walker-tailwind wiring + walker-gsap / walker-motion animation."
+    }
+  ]
+}

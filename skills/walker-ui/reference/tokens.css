@@ -1,0 +1,182 @@
+/**
+ * Design tokens for the Creative Review Workspace.
+ *
+ * This file is the SINGLE source of hard-coded values in the codebase.
+ * Components must reference these CSS variables (directly or via the
+ * token-backed Tailwind utilities wired up in globals.css), never raw hex.
+ *
+ * Palette: a clean, minimal, Notion-style neutral system — all-white light
+ * pages with a Notion-dark twin. Warm near-black ink on white, hairline
+ * borders, flat surfaces with only the faintest tint for elevation. The only
+ * chromatic colors are the brand `--accent` (used sparingly) and the functional
+ * severity colors (risk/minor/pass), used in highlight squiggles and signal
+ * fill bars.
+ *
+ * Light values live in :root, dark values in .dark (next-themes "class"
+ * strategy toggles `.dark` on the <html> element).
+ */
+
+:root {
+  /* Neutrals — light (Notion-style all-white).
+     Pages are WHITE. Surfaces are white with the faintest off-white tint so
+     subtle elevation reads without heavy cards. The text tiers are tuned for
+     WCAG 2.1 AA: primary/secondary clear 4.5:1 against bg/surface/panel for
+     body and meta copy; `--text-tertiary` is a decorative/non-text tier
+     (icons, dividers, separators) and is NOT used for body text. */
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --panel: #fafafa;
+  /* Outer app canvas: a hair off-white so white "paper" surfaces sit calmly on
+     the page frame without a visible gray band. */
+  --app-canvas: #fcfcfc;
+  /* Hairline border — a soft warm light gray. */
+  --border: #ededec;
+  /* Warm near-black ink (Notion's text color). */
+  --text-primary: #37352f;
+  /* Calm muted grays. `--text-secondary` (#6b6a64) clears 4.5:1 on white/panel
+     for meta copy; `--text-tertiary` (#737269) is also used as real text
+     (placeholders, badges, breadcrumb, eyebrow labels, meta), so it is darkened
+     to clear WCAG 2.1 AA 4.5:1 against bg/surface (#fff, 4.84:1) and panel
+     (#fafafa, 4.64:1), while staying a touch lighter than `--text-secondary`. */
+  --text-secondary: #6b6a64;
+  --text-tertiary: #737269;
+  /* Brand yellow — used sparingly (small accents). */
+  --accent: #facc15;
+  /* Readable label/icon color ON the brand yellow. `--accent` is the SAME yellow in
+     both themes, so this stays a near-black in both: `--text-primary` (light) reads on
+     yellow at AA but flips near-white in dark, and `--bg` flips white in light — neither
+     works in both. This dedicated token is dark in BOTH themes (≥4.5:1 on `--accent`). */
+  --on-accent: #37352f;
+  /* Focus ring — a calm neutral gray (NOT the brand yellow). */
+  --focus: #6b6a64;
+
+  /* Functional / chromatic — light (muted/calm).
+     `--risk/--minor/--pass` are the GRAPHICAL values (squiggle underlines and
+     signal fill bars), tuned for the ≥3:1 non-text threshold. They are too light
+     for body TEXT at AA, so `--*-text` give AA-passing (≥4.5:1) variants used
+     wherever the severity color labels text (error copy, drift, verdict, issue
+     quotes). Dark mode's chromatic values already clear 4.5:1, so the text
+     variants there equal the graphical ones. */
+  --risk: #e0563f;
+  --minor: #c47f15;
+  --pass: #4a9d6e;
+  --risk-text: #b3402c;
+  --minor-text: #9a6712;
+  --pass-text: #2f7a52;
+
+  /* Type scale — UI.
+     Notion-style: quiet small labels, calm body, large airy titles. Each entry:
+     font-size / line-height / font-weight (+ tracking where noted).
+
+     EYEBROW / SECTION header (e.g. "REVIEW"): 11px UPPERCASE, tracking .06em,
+     tertiary — `label-xs`. Small labels / meta-on-control: 12px — `label-sm`. */
+  --font-size-label-xs: 0.6875rem;
+  --line-height-label-xs: 1rem;
+  --font-weight-label-xs: 600;
+  --letter-spacing-label-xs: 0.06em;
+
+  --font-size-label-sm: 0.75rem;
+  --line-height-label-sm: 1rem;
+  --font-weight-label-sm: 500;
+
+  /* Body / meta — 13px muted secondary copy. */
+  --font-size-body: 0.8125rem;
+  --line-height-body: 1.25rem;
+  --font-weight-body: 400;
+
+  --font-size-body-emphasis: 0.875rem;
+  --line-height-body-emphasis: 1.25rem;
+  --font-weight-body-emphasis: 500;
+
+  /* Title — quiet section title. */
+  --font-size-title: 1rem;
+  --line-height-title: 1.5rem;
+  --font-weight-title: 600;
+
+  --font-size-heading: 1.375rem;
+  --line-height-heading: 1.875rem;
+  --font-weight-heading: 600;
+  --letter-spacing-heading: -0.015em;
+
+  /* Display — large, airy page title (matches the mockup): 36px / 700 / -0.02em. */
+  --font-size-display: 2.25rem;
+  --line-height-display: 2.75rem;
+  --font-weight-display: 700;
+  --letter-spacing-display: -0.02em;
+
+  /* Type scale — document content.
+     Document body: ~16px with generous 1.75 rhythm, calm and readable. */
+  --font-size-doc-body: 1rem;
+  --line-height-doc-body: 1.75rem;
+  --font-weight-doc-body: 400;
+
+  --font-size-doc-title: 2.25rem;
+  --line-height-doc-title: 2.75rem;
+  --font-weight-doc-title: 700;
+  --letter-spacing-doc-title: -0.02em;
+
+  /* Document measure */
+  --measure-doc: 70ch;
+
+  /* Spacing — 4px grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Radius */
+  --radius-control: 7px;
+  --radius-card: 8px;
+  --radius-pill: 9999px;
+
+  /* Inverse ink: a surface filled with primary ink and its readable label.
+     Used by the charcoal/INK primary button. In light mode this is the warm
+     near-black on white; the label is the page bg. */
+  --ink: var(--text-primary);
+  --ink-foreground: #ffffff;
+  --ink-hover: #4a4843;
+}
+
+.dark {
+  /* Neutrals — dark (Notion-dark twin).
+     Page ~#191919; surfaces lift slightly; light text on hairline borders.
+     `--text-tertiary` (#909089) is also used as real text, so it is lightened to
+     clear WCAG 2.1 AA 4.5:1 against bg (#191919, 5.47:1), surface (#202020,
+     5.07:1) and panel (#262625, 4.72:1), while staying a touch lower-contrast
+     than `--text-secondary` (#9b9b95) for meta copy. */
+  --bg: #191919;
+  --surface: #202020;
+  --panel: #262625;
+  /* The app frame matches the page bg; surfaces lift via `--surface`/`--panel`. */
+  --app-canvas: #191919;
+  --border: #333230;
+  --text-primary: #ededeb;
+  --text-secondary: #9b9b95;
+  --text-tertiary: #909089;
+  /* Brand yellow stays as the sparing accent in dark too. */
+  --accent: #facc15;
+  /* Same near-black label on the (identical) yellow — dark in both themes. */
+  --on-accent: #191919;
+  /* Focus ring — calm neutral gray (dark theme). */
+  --focus: #9b9b95;
+
+  /* Inverse ink — dark: the primary button is a near-white surface with dark
+     label (Notion-dark style), so it reads as the strong action against the
+     dark page. */
+  --ink: #ededeb;
+  --ink-foreground: #191919;
+  --ink-hover: #ffffff;
+
+  /* Functional / chromatic — dark. The bright variants already clear 4.5:1 as
+     text on every dark surface, so the `--*-text` variants equal the graphical
+     ones (kept for token parity with light). */
+  --risk: #f0917e;
+  --minor: #e6b35a;
+  --pass: #6fc295;
+  --risk-text: #f0917e;
+  --minor-text: #e6b35a;
+  --pass-text: #6fc295;
+}
